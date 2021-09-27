@@ -1,10 +1,10 @@
 ﻿using System;
+using MediatR;
 
-namespace GloboTicket.TicketManagement.Application.Features.Events
+namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.UpdateEvent
 {
-    public class EventDetailVM
+    public class UpdateEventCommand : IRequest
     {
-        
         public Guid EventId { get; set; }
         public string Name { get; set; }
         public int Price { get; set; }
@@ -12,9 +12,6 @@ namespace GloboTicket.TicketManagement.Application.Features.Events
         public DateTime Date { get; set; }
         public string Description { get; set; }
         public string ImageUrl { get; set; }
-        
         public Guid CategoryId { get; set; }
-        public CategoryDto Category { get; set; }
-    
     }
 }
