@@ -11,7 +11,7 @@ namespace GloboTicket.TicketManagement.Infrastructure.Mail
 {
     public class EmailService : IEmailService
     {
-        public EmailSettings EmailSettings { get;}
+        public EmailSettings EmailSettings { get; }
 
         public EmailService(IOptions<EmailSettings> options)
         {
@@ -36,7 +36,7 @@ namespace GloboTicket.TicketManagement.Infrastructure.Mail
 
             if (response.StatusCode == HttpStatusCode.Accepted || response.StatusCode == HttpStatusCode.OK)
                 return true;
-            
+
             return false;
         }
     }
