@@ -48,4 +48,4 @@ namespace GloboTicket.TicketManagement.Api.Controllers
             return Ok(response);
         }
     }
-}
+} 
