@@ -58,7 +58,7 @@ namespace GloboTicket.TicketManagement.Api.Controllers
         }
 
         [HttpPut(Name = "UpdateEvent")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Unit>> Update([FromBody] UpdateEventCommand updateEventCommand)
         {

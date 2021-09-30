@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
+using GloboTicket.TicketManagement.Api.Middleware;
 using GloboTicket.TicketManagement.Application;
 using GloboTicket.TicketManagement.Infrastructure;
 using Microsoft.AspNetCore.Builder;
@@ -59,6 +61,7 @@ namespace GloboTicket.TicketManagement.Api
 
             app.UseRouting();
 
+            app.UseCustomExceptionHandler();
             app.UseCors("Open");
             
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
