@@ -10,16 +10,16 @@ namespace GloboTicket.TicketManagement.Infrastructure
 {
     public class GloboTicketDbContext: DbContext
         {
-            private readonly ILoggedInUserService _loggedInUserService;
+            // private readonly ILoggedInUserService _loggedInUserService;
             public GloboTicketDbContext(DbContextOptions<GloboTicketDbContext> options)
                : base(options)
             {
             }
-            public GloboTicketDbContext(DbContextOptions<GloboTicketDbContext> options, ILoggedInUserService loggedInUserService)
-                : base(options)
-            {
-                _loggedInUserService = loggedInUserService;
-            }
+            // public GloboTicketDbContext(DbContextOptions<GloboTicketDbContext> options, ILoggedInUserService loggedInUserService)
+            //     : base(options)
+            // {
+            //     _loggedInUserService = loggedInUserService;
+            // }
             public DbSet<Event> Events { get; set; }
             public DbSet<Category> Categories { get; set; }
             public DbSet<Order> Orders { get; set; }
@@ -200,11 +200,11 @@ namespace GloboTicket.TicketManagement.Infrastructure
                     {
                         case EntityState.Added:
                             entry.Entity.CreatedDate = DateTime.Now;
-                            entry.Entity.CreatedBy = _loggedInUserService.UserId;
+                            // entry.Entity.CreatedBy = _loggedInUserService.UserId;
                             break;
                         case EntityState.Modified:
                             entry.Entity.LastModifiedDate = DateTime.Now;
-                            entry.Entity.LastModifiedBy = _loggedInUserService.UserId;
+                            // entry.Entity.LastModifiedBy = _loggedInUserService.UserId;
                             break;
                     }
                 }
