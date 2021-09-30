@@ -5,10 +5,12 @@ using AutoMapper;
 using FluentValidation;
 using GloboTicket.TicketManagement.Application.Contracts.Infrastructure;
 using GloboTicket.TicketManagement.Application.Contracts.Persistence;
+using GloboTicket.TicketManagement.Application.Features.Categories.Commands.CreateCategory;
 using GloboTicket.TicketManagement.Application.Models.Email;
 using GloboTicket.TicketManagement.Application.Models.Mail;
 using GloboTicket.TicketManagement.Domain.Entities;
 using MediatR;
+using Microsoft.Extensions.Logging;
 
 namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.CreateEvent
 {
@@ -17,12 +19,15 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Crea
         private readonly IMapper _mapper;
         private readonly IEventRepository _eventRepository;
         private readonly IEmailService _emailService;
+        private readonly ILogger<CreateCategoryCommandHandler> _logger;
 
-        public CreateEventCommandHandler(IMapper mapper, IEventRepository eventRepository, IEmailService emailService)
+        public CreateEventCommandHandler(IMapper mapper, IEventRepository eventRepository, IEmailService emailService,
+            ILogger<CreateCategoryCommandHandler> logger)
         {
             _mapper = mapper;
             _eventRepository = eventRepository;
             _emailService = emailService;
+            _logger = logger;
         }
 
         public async Task<Guid> Handle(CreateEventCommand request, CancellationToken cancellationToken)
@@ -49,7 +54,7 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Crea
             }
             catch (Exception e)
             {
-                // ignored
+                _logger.LogError($"There error occured during creating event {@event.EventId}. {e.Message}");
             }
 
             return @event.EventId;
